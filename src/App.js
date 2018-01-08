@@ -57,7 +57,7 @@ const SelectedBlocks = ({ blocks, selectedBlockIds, unselectBlock }) => {
         alignContent: "flex-start"
       }}
     >
-      <div style={{ position: "absolute", width: "100%" }}>
+      <div style={{ position: "absolute", width: "100%", zIndex: -1 }}>
         <Line />
         <Line />
         <Line />
