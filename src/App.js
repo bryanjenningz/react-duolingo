@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import questions from "./mockQuestions.json";
 
-const ProgressBar = ({ percent }) => (
+const ProgressBar = ({ percent, showQuitModal }) => (
   <div style={{ display: "flex", alignItems: "center" }}>
-    <div style={{ flex: 1, color: "#ccc", fontSize: 50, cursor: "pointer" }}>
+    <div
+      style={{ flex: 1, color: "#ccc", fontSize: 50, cursor: "pointer" }}
+      onClick={showQuitModal}
+    >
       ×
     </div>
     <div
@@ -166,10 +169,58 @@ const Results = ({ answered, isCorrect, solution }) =>
         <div style={{ fontSize: 24 }}>You are correct</div>
       ) : (
         <div>
-          <div style={{ fontSize: 24 }}>Oops that's not correct.</div>
+          <div style={{ fontSize: 24 }}>Oops, that's not correct.</div>
           <div>{solution}</div>
         </div>
       )}
+    </div>
+  ) : null;
+
+const QuitModal = ({ shown, cancel, quit }) =>
+  shown ? (
+    <div>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          background: "rgba(0,0,0,0.8)"
+        }}
+        onClick={cancel}
+      />
+      <div
+        style={{
+          position: "absolute",
+          left: "10%",
+          top: "40%",
+          width: "80%",
+          height: "20%",
+          background: "white"
+        }}
+      >
+        <h3 style={{ textAlign: "center" }}>Are you sure about that?</h3>
+        <div style={{ textAlign: "center" }}>
+          All progress in this lesson will be lost.
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignContent: "flex-end",
+            alignItems: "flex-end",
+            marginTop: 20
+          }}
+        >
+          <div style={{ flex: 2 }} />
+          <span style={{ cursor: "pointer", flex: 1 }} onClick={cancel}>
+            CANCEL
+          </span>
+          <span style={{ cursor: "pointer", flex: 1 }} onClick={quit}>
+            QUIT
+          </span>
+        </div>
+      </div>
     </div>
   ) : null;
 
@@ -199,7 +250,16 @@ const checkAnswer = ({
 
 const nextQuestion = () => ({
   selectedBlockIds: [],
-  answered: false
+  answered: false,
+  quitModalShown: false
+});
+
+const showQuitModal = () => ({
+  quitModalShown: true
+});
+
+const hideQuitModal = () => ({
+  quitModalShown: false
 });
 
 class App extends Component {
@@ -209,7 +269,8 @@ class App extends Component {
     solutions: questions[0].solutions,
     blocks: questions[0].blocks,
     selectedBlockIds: [],
-    answered: false
+    answered: false,
+    quitModalShown: false
   };
 
   render() {
@@ -219,7 +280,8 @@ class App extends Component {
       solutions,
       blocks,
       selectedBlockIds,
-      answered
+      answered,
+      quitModalShown
     } = this.state;
     return (
       <div
@@ -230,7 +292,10 @@ class App extends Component {
           height: "100vh"
         }}
       >
-        <ProgressBar percent={correctAnswers / 10 * 100} />
+        <ProgressBar
+          percent={correctAnswers / 10 * 100}
+          showQuitModal={() => this.setState(showQuitModal)}
+        />
         <h1 style={{ textAlign: "center" }}>Translate this sentence</h1>
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           {sentence.map(({ text }, i) => (
@@ -276,6 +341,11 @@ class App extends Component {
               .join("")
           )}
           solution={solutions[0]}
+        />
+        <QuitModal
+          shown={quitModalShown}
+          cancel={() => this.setState(hideQuitModal)}
+          quit={() => this.setState(nextQuestion)}
         />
       </div>
     );
