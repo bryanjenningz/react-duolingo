@@ -146,6 +146,33 @@ const CheckButton = ({ state, checkAnswer, nextQuestion }) => (
   </div>
 );
 
+const Results = ({ answered, isCorrect, solution }) =>
+  answered ? (
+    <div
+      style={{
+        position: "absolute",
+        left: "10%",
+        width: "80%",
+        top: "60%",
+        height: 100,
+        padding: 20,
+        boxSizing: "border-box",
+        color: isCorrect ? "green" : "red",
+        background: isCorrect ? "lime" : "pink",
+        textAlign: "center"
+      }}
+    >
+      {isCorrect ? (
+        <div style={{ fontSize: 24 }}>You are correct</div>
+      ) : (
+        <div>
+          <div style={{ fontSize: 24 }}>Oops that's not correct.</div>
+          <div>{solution}</div>
+        </div>
+      )}
+    </div>
+  ) : null;
+
 const selectBlock = blockId => ({ selectedBlockIds }) => ({
   selectedBlockIds: selectedBlockIds.concat(blockId)
 });
@@ -189,6 +216,7 @@ class App extends Component {
     const {
       correctAnswers,
       sentence,
+      solutions,
       blocks,
       selectedBlockIds,
       answered
@@ -239,6 +267,15 @@ class App extends Component {
           }
           checkAnswer={() => this.setState(checkAnswer)}
           nextQuestion={() => this.setState(nextQuestion)}
+        />
+        <Results
+          answered={answered}
+          isCorrect={solutions.includes(
+            selectedBlockIds
+              .map(id => blocks.find(b => b.id === id).text)
+              .join("")
+          )}
+          solution={solutions[0]}
         />
       </div>
     );
