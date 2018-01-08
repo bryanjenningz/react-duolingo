@@ -144,12 +144,13 @@ const unselectBlock = blockId => ({ selectedBlockIds }) => ({
 class App extends Component {
   state = {
     correctAnswers: 5,
+    sentence: questions[0].sentence,
     blocks: questions[0].blocks,
     selectedBlockIds: []
   };
 
   render() {
-    const { correctAnswers, blocks, selectedBlockIds } = this.state;
+    const { correctAnswers, sentence, blocks, selectedBlockIds } = this.state;
     return (
       <div
         style={{
@@ -160,6 +161,22 @@ class App extends Component {
         }}
       >
         <ProgressBar percent={correctAnswers / 10 * 100} />
+        <h1 style={{ textAlign: "center" }}>Translate this sentence</h1>
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          {sentence.map(({ text }, i) => (
+            <span
+              key={i}
+              style={{
+                margin: 5,
+                borderBottom: "1px dashed",
+                paddingBottom: 5,
+                cursor: "pointer"
+              }}
+            >
+              {text}
+            </span>
+          ))}
+        </div>
         <SelectedBlocks
           blocks={blocks}
           selectedBlockIds={selectedBlockIds}
