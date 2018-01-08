@@ -36,36 +36,60 @@ const ProgressBar = ({ percent }) => (
   </div>
 );
 
+const Line = () => (
+  <div
+    style={{ background: "#ccc", width: "100%", height: 2, margin: "50px 0" }}
+  />
+);
+
 const SelectedBlocks = ({ blocks, selectedBlockIds, unselectBlock }) => {
   const selectedBlocks = selectedBlockIds.map(blockId =>
     blocks.find(b => b.id === blockId)
   );
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {selectedBlocks.map(block => {
-        const isSelected = selectedBlockIds.includes(block.id);
-        return (
-          <div
-            key={block.id}
-            style={{
-              background: "white",
-              color: "black",
-              padding: 10,
-              margin: 5,
-              cursor: "pointer"
-            }}
-            onClick={() => unselectBlock(block.id)}
-          >
-            {block.text}
-          </div>
-        );
-      })}
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        height: "30%",
+        position: "relative",
+        alignItems: "flex-start",
+        alignContent: "flex-start"
+      }}
+    >
+      <div style={{ position: "absolute", width: "100%" }}>
+        <Line />
+        <Line />
+        <Line />
+      </div>
+      {selectedBlocks.map(block => (
+        <div
+          key={block.id}
+          style={{
+            background: "white",
+            color: "black",
+            padding: 10,
+            margin: 5,
+            cursor: "pointer"
+          }}
+          onClick={() => unselectBlock(block.id)}
+        >
+          {block.text}
+        </div>
+      ))}
     </div>
   );
 };
 
 const UnselectedBlocks = ({ blocks, selectedBlockIds, selectBlock }) => (
-  <div style={{ display: "flex", flexWrap: "wrap" }}>
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      alignContent: "center",
+      height: "30%"
+    }}
+  >
     {blocks.map(block => {
       const isSelected = selectedBlockIds.includes(block.id);
       return (
@@ -132,8 +156,7 @@ class App extends Component {
           maxWidth: 500,
           margin: "0 auto",
           padding: "0 1em",
-          display: "flex",
-          flexDirection: "column"
+          height: "100vh"
         }}
       >
         <ProgressBar percent={correctAnswers / 10 * 100} />
