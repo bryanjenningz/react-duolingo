@@ -186,41 +186,53 @@ const QuitModal = ({ shown, cancel, quit }) =>
           top: 0,
           right: 0,
           bottom: 0,
+          display: "flex",
+          contentAlign: "center",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <div
+          style={{
+            background: "white",
+            width: 350,
+            padding: 20,
+            zIndex: 1
+          }}
+        >
+          <h3 style={{ textAlign: "center" }}>Are you sure about that?</h3>
+          <div style={{ textAlign: "center" }}>
+            All progress in this lesson will be lost.
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignContent: "flex-end",
+              alignItems: "flex-end",
+              marginTop: 20
+            }}
+          >
+            <div style={{ flex: 2 }} />
+            <span style={{ cursor: "pointer", flex: 1 }} onClick={cancel}>
+              CANCEL
+            </span>
+            <span style={{ cursor: "pointer", flex: 1 }} onClick={quit}>
+              QUIT
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
           background: "rgba(0,0,0,0.8)"
         }}
         onClick={cancel}
       />
-      <div
-        style={{
-          position: "absolute",
-          left: "10%",
-          top: "40%",
-          width: "80%",
-          height: "20%",
-          background: "white"
-        }}
-      >
-        <h3 style={{ textAlign: "center" }}>Are you sure about that?</h3>
-        <div style={{ textAlign: "center" }}>
-          All progress in this lesson will be lost.
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignContent: "flex-end",
-            alignItems: "flex-end",
-            marginTop: 20
-          }}
-        >
-          <div style={{ flex: 2 }} />
-          <span style={{ cursor: "pointer", flex: 1 }} onClick={cancel}>
-            CANCEL
-          </span>
-          <span style={{ cursor: "pointer", flex: 1 }} onClick={quit}>
-            QUIT
-          </span>
-        </div>
-      </div>
     </div>
   ) : null;
 
