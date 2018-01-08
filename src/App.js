@@ -121,7 +121,7 @@ const buttonState = {
   answered: 3
 };
 
-const CheckButton = ({ state }) => (
+const CheckButton = ({ state, checkAnswer, nextQuestion }) => (
   <div
     style={{
       width: "100%",
@@ -133,6 +133,13 @@ const CheckButton = ({ state }) => (
       justifyContent: "center",
       borderRadius: 100,
       cursor: "pointer"
+    }}
+    onClick={() => {
+      if (state === buttonState.canAnswer) {
+        checkAnswer();
+      } else if (state === buttonState.answered) {
+        nextQuestion();
+      }
     }}
   >
     {state === buttonState.answered ? "CONTINUE" : "CHECK"}
@@ -147,10 +154,32 @@ const unselectBlock = blockId => ({ selectedBlockIds }) => ({
   selectedBlockIds: selectedBlockIds.filter(id => id !== blockId)
 });
 
+const checkAnswer = ({
+  correctAnswers,
+  blocks,
+  selectedBlockIds,
+  solutions
+}) => ({
+  correctAnswers:
+    correctAnswers +
+    (solutions.includes(
+      selectedBlockIds.map(id => blocks.find(b => b.id === id).text).join("")
+    )
+      ? 1
+      : 0),
+  answered: true
+});
+
+const nextQuestion = () => ({
+  selectedBlockIds: [],
+  answered: false
+});
+
 class App extends Component {
   state = {
     correctAnswers: 5,
     sentence: questions[0].sentence,
+    solutions: questions[0].solutions,
     blocks: questions[0].blocks,
     selectedBlockIds: [],
     answered: false
@@ -208,6 +237,8 @@ class App extends Component {
                 ? buttonState.cannotAnswer
                 : buttonState.canAnswer
           }
+          checkAnswer={() => this.setState(checkAnswer)}
+          nextQuestion={() => this.setState(nextQuestion)}
         />
       </div>
     );
