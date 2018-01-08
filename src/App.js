@@ -115,12 +115,18 @@ const UnselectedBlocks = ({ blocks, selectedBlockIds, selectBlock }) => (
   </div>
 );
 
-const CheckButton = () => (
+const buttonState = {
+  cannotAnswer: 1,
+  canAnswer: 2,
+  answered: 3
+};
+
+const CheckButton = ({ state }) => (
   <div
     style={{
       width: "100%",
-      color: "#888",
-      background: "#ccc",
+      color: state === buttonState.cannotAnswer ? "#888" : "white",
+      background: state === buttonState.cannotAnswer ? "#ccc" : "#13c713",
       height: 50,
       display: "flex",
       alignItems: "center",
@@ -129,7 +135,7 @@ const CheckButton = () => (
       cursor: "pointer"
     }}
   >
-    CHECK
+    {state === buttonState.answered ? "CONTINUE" : "CHECK"}
   </div>
 );
 
@@ -146,11 +152,18 @@ class App extends Component {
     correctAnswers: 5,
     sentence: questions[0].sentence,
     blocks: questions[0].blocks,
-    selectedBlockIds: []
+    selectedBlockIds: [],
+    answered: false
   };
 
   render() {
-    const { correctAnswers, sentence, blocks, selectedBlockIds } = this.state;
+    const {
+      correctAnswers,
+      sentence,
+      blocks,
+      selectedBlockIds,
+      answered
+    } = this.state;
     return (
       <div
         style={{
@@ -187,7 +200,15 @@ class App extends Component {
           selectedBlockIds={selectedBlockIds}
           selectBlock={id => this.setState(selectBlock(id))}
         />
-        <CheckButton />
+        <CheckButton
+          state={
+            answered
+              ? buttonState.answered
+              : selectedBlockIds.length === 0
+                ? buttonState.cannotAnswer
+                : buttonState.canAnswer
+          }
+        />
       </div>
     );
   }
