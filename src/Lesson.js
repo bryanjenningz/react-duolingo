@@ -79,7 +79,7 @@ const SelectedBlocks = ({ blocks, selectedBlockIds, unselectBlock }) => {
             userSelect: "none"
           }}
           onClick={() => {
-            showMovingBlock(block.id, false); 
+            showMovingBlock(block.id, false);
             unselectBlock(block.id);
           }}
           id={`selected-block-${block.id}`}
@@ -105,8 +105,9 @@ const showMovingBlock = async (id, isBeingSelected) => {
   let startEl = document.getElementById(`selected-block-${id}`);
   let endEl = document.getElementById(`unselected-block-${id}`);
   if (isBeingSelected) [startEl, endEl] = [endEl, startEl];
-  const [{ x: startX, y: startY }, { x: endX, y: endY }] =
-    [startEl, endEl].map(e => e.getBoundingClientRect());
+  const [{ x: startX, y: startY }, { x: endX, y: endY }] = [startEl, endEl].map(
+    e => e.getBoundingClientRect()
+  );
   const [dx, dy] = [endX - startX, endY - startY];
   endEl.style.visibility = "hidden";
 
@@ -126,8 +127,8 @@ const showMovingBlock = async (id, isBeingSelected) => {
       return movingBlock.parentNode.removeChild(movingBlock);
     }
     const percentage = (now - startTime) / duration;
-    const x = startX + (dx * percentage);
-    const y = startY + (dy * percentage);
+    const x = startX + dx * percentage;
+    const y = startY + dy * percentage;
     movingBlock.style.left = x + "px";
     movingBlock.style.top = y + "px";
     requestAnimationFrame(moveBlock);
