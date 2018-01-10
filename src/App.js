@@ -75,7 +75,8 @@ const SelectedBlocks = ({ blocks, selectedBlockIds, unselectBlock }) => {
             color: "black",
             padding: 10,
             margin: 5,
-            cursor: "pointer"
+            cursor: "pointer",
+            userSelect: "none"
           }}
           onClick={() => {
             showMovingBlock(block.id, false); 
@@ -152,7 +153,8 @@ const UnselectedBlocks = ({ blocks, selectedBlockIds, selectBlock }) => (
             color: isSelected ? "#aaa" : "black",
             padding: 10,
             margin: 5,
-            cursor: "pointer"
+            cursor: "pointer",
+            userSelect: "none"
           }}
           onClick={() => {
             if (!isSelected) {
@@ -361,7 +363,7 @@ class App extends Component {
         />
         <h1 style={{ textAlign: "center" }}>Translate this sentence</h1>
         <div style={{ textAlign: "center", marginBottom: 20 }}>
-          {sentence.map(({ text }, i) => (
+          {sentence.map(({ text, translations }, i) => (
             <span
               key={i}
               style={{
@@ -370,6 +372,7 @@ class App extends Component {
                 paddingBottom: 5,
                 cursor: "pointer"
               }}
+              title={translations.join("\n")}
             >
               {text}
             </span>
