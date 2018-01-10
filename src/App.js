@@ -31,7 +31,8 @@ const ProgressBar = ({ percent, showQuitModal }) => (
             width: `${percent}%`,
             height: 10,
             background: "#13c713",
-            borderRadius: 100
+            borderRadius: 100,
+            transition: "width 0.5s linear"
           }}
         />
       </div>
@@ -57,7 +58,8 @@ const SelectedBlocks = ({ blocks, selectedBlockIds, unselectBlock }) => {
         height: "30%",
         position: "relative",
         alignItems: "flex-start",
-        alignContent: "flex-start"
+        alignContent: "flex-start",
+        visibility: "hidden"
       }}
     >
       <div style={{ position: "absolute", width: "100%", zIndex: -1 }}>
@@ -75,13 +77,60 @@ const SelectedBlocks = ({ blocks, selectedBlockIds, unselectBlock }) => {
             margin: 5,
             cursor: "pointer"
           }}
-          onClick={() => unselectBlock(block.id)}
+          onClick={() => {
+            showMovingBlock(block.id, false); 
+            unselectBlock(block.id);
+          }}
+          id={`selected-block-${block.id}`}
         >
           {block.text}
         </div>
       ))}
     </div>
   );
+};
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const showMovingBlock = async (id, isBeingSelected) => {
+  const startTime = Date.now();
+  const duration = 100;
+  while (
+    !document.getElementById(`selected-block-${id}`) ||
+    !document.getElementById(`unselected-block-${id}`)
+  ) {
+    await sleep(0);
+  }
+  let startEl = document.getElementById(`selected-block-${id}`);
+  let endEl = document.getElementById(`unselected-block-${id}`);
+  if (isBeingSelected) [startEl, endEl] = [endEl, startEl];
+  const [{ x: startX, y: startY }, { x: endX, y: endY }] =
+    [startEl, endEl].map(e => e.getBoundingClientRect());
+  const [dx, dy] = [endX - startX, endY - startY];
+  endEl.style.visibility = "hidden";
+
+  const movingBlock = document.createElement("div");
+  movingBlock.textContent = startEl.textContent;
+  movingBlock.style.position = "absolute";
+  movingBlock.style.left = startX + "px";
+  movingBlock.style.top = startY + "px";
+  movingBlock.style.padding = "10px";
+  movingBlock.style.background = "white";
+  document.body.appendChild(movingBlock);
+
+  (function moveBlock() {
+    const now = Date.now();
+    if (now >= startTime + duration) {
+      endEl.style.visibility = "initial";
+      return movingBlock.parentNode.removeChild(movingBlock);
+    }
+    const percentage = (now - startTime) / duration;
+    const x = startX + (dx * percentage);
+    const y = startY + (dy * percentage);
+    movingBlock.style.left = x + "px";
+    movingBlock.style.top = y + "px";
+    requestAnimationFrame(moveBlock);
+  })();
 };
 
 const UnselectedBlocks = ({ blocks, selectedBlockIds, selectBlock }) => (
@@ -107,9 +156,11 @@ const UnselectedBlocks = ({ blocks, selectedBlockIds, selectBlock }) => (
           }}
           onClick={() => {
             if (!isSelected) {
+              showMovingBlock(block.id, true);
               selectBlock(block.id);
             }
           }}
+          id={`unselected-block-${block.id}`}
         >
           {block.text}
         </div>
