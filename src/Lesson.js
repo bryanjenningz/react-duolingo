@@ -299,22 +299,25 @@ const unselectBlock = blockId => ({ selectedBlockIds }) => ({
 });
 
 const checkAnswer = ({
+  questionIndex,
   correctAnswers,
-  blocks,
-  selectedBlockIds,
-  solutions
-}) => ({
-  correctAnswers:
-    correctAnswers +
-    (solutions.includes(
-      selectedBlockIds.map(id => blocks.find(b => b.id === id).text).join("")
-    )
-      ? 1
-      : 0),
-  answered: true
-});
+  selectedBlockIds
+}) => {
+  const { solutions, blocks } = questions[questionIndex];
+  return {
+    correctAnswers:
+      correctAnswers +
+      (solutions.includes(
+        selectedBlockIds.map(id => blocks.find(b => b.id === id).text).join("")
+      )
+        ? 1
+        : 0),
+    answered: true
+  };
+};
 
-const nextQuestion = () => ({
+const nextQuestion = ({ questionIndex }) => ({
+  questionIndex: (questionIndex + 1) % questions.length,
   selectedBlockIds: [],
   answered: false,
   quitModalShown: false
@@ -330,10 +333,8 @@ const hideQuitModal = () => ({
 
 class Lesson extends Component {
   state = {
+    questionIndex: 0,
     correctAnswers: 5,
-    sentence: questions[0].sentence,
-    solutions: questions[0].solutions,
-    blocks: questions[0].blocks,
     selectedBlockIds: [],
     answered: false,
     quitModalShown: false
@@ -341,14 +342,15 @@ class Lesson extends Component {
 
   render() {
     const {
+      questionIndex,
       correctAnswers,
-      sentence,
-      solutions,
-      blocks,
       selectedBlockIds,
       answered,
       quitModalShown
     } = this.state;
+
+    const { sentence, solutions, blocks } = questions[questionIndex];
+
     return (
       <div
         style={{

@@ -3,7 +3,7 @@ import Learn from "./Learn";
 import Lesson from "./Lesson";
 
 class App extends Component {
-  state = { route: "LEARN" };
+  state = { route: "LESSON" };
 
   render() {
     switch (this.state.route) {
