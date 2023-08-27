@@ -1,5 +1,5 @@
-import languages, { type Language } from "../utils/languages";
-import type { BoundStateCreator } from "../hooks/useBoundStore";
+import languages, { type Language } from "~/utils/languages";
+import type { BoundStateCreator } from "~/hooks/useBoundStore";
 
 export type LanguageSlice = {
   language: Language;

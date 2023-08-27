@@ -14,9 +14,9 @@ import {
   LessonTopBarEmptyHeart,
   LessonTopBarHeart,
   WomanSvg,
-} from "../components/Svgs";
+} from "~/components/Svgs";
 import womanPng from "../../public/woman.png";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { useBoundStore } from "~/hooks/useBoundStore";
 import { useRouter } from "next/router";
 
 const lessonProblem1 = {
@@ -294,8 +294,8 @@ const QuitMessage = ({
       <div
         className={
           quitMessageShown
-            ? "fixed top-0 bottom-0 left-0 right-0 z-30 bg-black bg-opacity-60 transition-all duration-300"
-            : "pointer-events-none fixed top-0 bottom-0 left-0 right-0 z-30 bg-black bg-opacity-0 transition-all duration-300"
+            ? "fixed bottom-0 left-0 right-0 top-0 z-30 bg-black bg-opacity-60 transition-all duration-300"
+            : "pointer-events-none fixed bottom-0 left-0 right-0 top-0 z-30 bg-black bg-opacity-0 transition-all duration-300"
         }
         onClick={() => setQuitMessageShown(false)}
         aria-label="Close quit message"
@@ -581,7 +581,7 @@ const ProblemWriteInEnglish = ({
               </div>
             </div>
 
-            <div className="flex min-h-[60px] flex-wrap gap-1 border-t-2 border-b-2 border-gray-200 py-1">
+            <div className="flex min-h-[60px] flex-wrap gap-1 border-b-2 border-t-2 border-gray-200 py-1">
               {selectedAnswers.map((i) => {
                 return (
                   <button
@@ -771,7 +771,7 @@ const ReviewLesson = ({
       ></div>
       <div className="relative flex w-full max-w-4xl flex-col gap-5 rounded-2xl border-2 border-gray-200 bg-white p-8">
         <button
-          className="absolute -top-5 -right-5 rounded-full border-2 border-gray-200 bg-gray-100 p-1 text-gray-400 hover:brightness-90"
+          className="absolute -right-5 -top-5 rounded-full border-2 border-gray-200 bg-gray-100 p-1 text-gray-400 hover:brightness-90"
           onClick={() => setReviewLessonShown(false)}
         >
           <BigCloseSvg className="h-8 w-8" />
@@ -813,7 +813,7 @@ const ReviewLesson = ({
                 </div>
                 <div>{questionResult.yourResponse}</div>
                 {selectedQuestionResult === questionResult && (
-                  <div className="absolute top-20 left-1 right-1 z-10 rounded-2xl border-2 border-gray-200 bg-white p-3 text-sm tracking-tighter">
+                  <div className="absolute left-1 right-1 top-20 z-10 rounded-2xl border-2 border-gray-200 bg-white p-3 text-sm tracking-tighter">
                     <div
                       className="absolute -top-2 h-3 w-3 rotate-45 border-l-2 border-t-2 border-gray-200 bg-white"
                       style={{ left: "calc(50% - 6px)" }}

@@ -6,7 +6,7 @@ import { useBottomBarItems } from "./BottomBar";
 import type { LoginScreenState } from "./LoginScreen";
 import { LoginScreen } from "./LoginScreen";
 import { GlobeIconSvg, PodcastIconSvg } from "./Svgs";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { useBoundStore } from "~/hooks/useBoundStore";
 
 const LeftBarMoreMenuSvg = (props: ComponentProps<"svg">) => {
   return (
@@ -38,10 +38,10 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
 
   return (
     <>
-      <nav className="fixed left-0 top-0 bottom-0 hidden flex-col gap-5 border-r-2 border-[#e5e5e5] bg-white p-3 md:flex lg:w-64 lg:p-5">
+      <nav className="fixed bottom-0 left-0 top-0 hidden flex-col gap-5 border-r-2 border-[#e5e5e5] bg-white p-3 md:flex lg:w-64 lg:p-5">
         <Link
           href="/learn"
-          className="ml-5 mb-5 mt-5 hidden text-3xl font-bold text-[#58cc02] lg:block"
+          className="mb-5 ml-5 mt-5 hidden text-3xl font-bold text-[#58cc02] lg:block"
         >
           duolingo
         </Link>
@@ -52,7 +52,7 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
                 {item.name === selectedTab ? (
                   <Link
                     href={item.href}
-                    className="flex grow items-center gap-3 rounded-xl border-2 border-[#84d8ff] bg-[#ddf4ff] py-1 px-2 text-sm font-bold uppercase text-blue-400"
+                    className="flex grow items-center gap-3 rounded-xl border-2 border-[#84d8ff] bg-[#ddf4ff] px-2 py-1 text-sm font-bold uppercase text-blue-400"
                   >
                     {item.icon}{" "}
                     <span className="sr-only lg:not-sr-only">{item.name}</span>
@@ -60,7 +60,7 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
                 ) : (
                   <Link
                     href={item.href}
-                    className="flex grow items-center gap-3 rounded-xl py-1 px-2 text-sm font-bold uppercase text-gray-400 hover:bg-gray-100"
+                    className="flex grow items-center gap-3 rounded-xl px-2 py-1 text-sm font-bold uppercase text-gray-400 hover:bg-gray-100"
                   >
                     {item.icon}{" "}
                     <span className="sr-only lg:not-sr-only">{item.name}</span>
@@ -70,7 +70,7 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
             );
           })}
           <div
-            className="relative flex grow cursor-default items-center gap-3 rounded-xl py-1 px-2 font-bold uppercase text-gray-400 hover:bg-gray-100"
+            className="relative flex grow cursor-default items-center gap-3 rounded-xl px-2 py-1 font-bold uppercase text-gray-400 hover:bg-gray-100"
             onClick={() => setMoreMenuShown((x) => !x)}
             onMouseEnter={() => setMoreMenuShown(true)}
             onMouseLeave={() => setMoreMenuShown(false)}
@@ -87,7 +87,7 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
             >
               <div className="flex flex-col py-2">
                 <Link
-                  className="flex items-center gap-4 py-2 px-5 text-left uppercase hover:bg-gray-100"
+                  className="flex items-center gap-4 px-5 py-2 text-left uppercase hover:bg-gray-100"
                   href="https://schools.duolingo.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -96,7 +96,7 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
                   Schools
                 </Link>
                 <Link
-                  className="flex items-center gap-4 py-2 px-5 text-left uppercase hover:bg-gray-100"
+                  className="flex items-center gap-4 px-5 py-2 text-left uppercase hover:bg-gray-100"
                   href="https://podcast.duolingo.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -108,27 +108,27 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
               <div className="flex flex-col border-t-2 border-gray-300 py-2">
                 {!loggedIn && (
                   <button
-                    className="py-2 px-5 text-left uppercase hover:bg-gray-100"
+                    className="px-5 py-2 text-left uppercase hover:bg-gray-100"
                     onClick={() => setLoginScreenState("SIGNUP")}
                   >
                     Create a profile
                   </button>
                 )}
                 <Link
-                  className="py-2 px-5 text-left uppercase hover:bg-gray-100"
+                  className="px-5 py-2 text-left uppercase hover:bg-gray-100"
                   href={loggedIn ? "/settings/account" : "/settings/sound"}
                 >
                   Settings
                 </Link>
                 <Link
-                  className="py-2 px-5 text-left uppercase hover:bg-gray-100"
+                  className="px-5 py-2 text-left uppercase hover:bg-gray-100"
                   href="https://support.duolingo.com/hc/en-us"
                 >
                   Help
                 </Link>
                 {!loggedIn && (
                   <button
-                    className="py-2 px-5 text-left uppercase hover:bg-gray-100"
+                    className="px-5 py-2 text-left uppercase hover:bg-gray-100"
                     onClick={() => setLoginScreenState("LOGIN")}
                   >
                     Sign in
@@ -136,7 +136,7 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
                 )}
                 {loggedIn && (
                   <button
-                    className="py-2 px-5 text-left uppercase hover:bg-gray-100"
+                    className="px-5 py-2 text-left uppercase hover:bg-gray-100"
                     onClick={logOut}
                   >
                     Sign out

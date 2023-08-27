@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import { BottomBar } from "../components/BottomBar";
-import { LeftBar } from "../components/LeftBar";
+import { BottomBar } from "~/components/BottomBar";
+import { LeftBar } from "~/components/LeftBar";
 import {
   BronzeLeagueSvg,
   EditPencilSvg,
@@ -11,10 +11,10 @@ import {
   ProfileFriendsSvg,
   ProfileTimeJoinedSvg,
   SettingsGearSvg,
-} from "../components/Svgs";
+} from "~/components/Svgs";
 import Link from "next/link";
-import { Flag } from "../components/Flag";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { Flag } from "~/components/Flag";
+import { useBoundStore } from "~/hooks/useBoundStore";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 

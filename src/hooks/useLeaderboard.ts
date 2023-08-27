@@ -1,5 +1,5 @@
-import { fakeUsers } from "../utils/fakeUsers";
-import { useBoundStore } from "./useBoundStore";
+import { fakeUsers } from "~/utils/fakeUsers";
+import { useBoundStore } from "~/hooks/useBoundStore";
 
 export const useLeaderboardUsers = () => {
   const xpThisWeek = useBoundStore((x) => x.xpThisWeek());

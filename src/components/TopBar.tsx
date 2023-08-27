@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import React, { useState } from "react";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { useBoundStore } from "~/hooks/useBoundStore";
 import { Calendar } from "./Calendar";
 import { Flag } from "./Flag";
 import {
@@ -121,7 +121,7 @@ export const TopBar = ({
 
         <div
           className={[
-            "absolute top-full left-0 right-0 bg-white transition duration-300",
+            "absolute left-0 right-0 top-full bg-white transition duration-300",
             menu === "HIDDEN" ? "opacity-0" : "opacity-100",
           ].join(" ")}
           aria-hidden={menu === "HIDDEN"}

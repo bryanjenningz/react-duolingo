@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CloseSvg } from "./Svgs";
 import type { ComponentProps } from "react";
 import React, { useEffect, useRef, useState } from "react";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { useBoundStore } from "~/hooks/useBoundStore";
 import { useRouter } from "next/router";
 
 export const FacebookLogoSvg = (props: ComponentProps<"svg">) => {
@@ -137,7 +137,7 @@ export const LoginScreen = ({
                     className="grow rounded-2xl border-2 border-gray-200 bg-gray-50 px-4 py-3"
                     placeholder="Age (optional)"
                   />
-                  <div className="absolute right-0 top-0 bottom-0 flex items-center justify-center pr-4">
+                  <div className="absolute bottom-0 right-0 top-0 flex items-center justify-center pr-4">
                     <div
                       className="relative flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-2 border-gray-200 text-gray-400"
                       onMouseEnter={() => setAgeTooltipShown(true)}
@@ -149,7 +149,7 @@ export const LoginScreen = ({
                     >
                       ?
                       {ageTooltipShown && (
-                        <div className="absolute top-full -right-5 z-10 w-72 rounded-2xl border-2 border-gray-200 bg-white p-4 text-center text-xs leading-5 text-gray-800">
+                        <div className="absolute -right-5 top-full z-10 w-72 rounded-2xl border-2 border-gray-200 bg-white p-4 text-center text-xs leading-5 text-gray-800">
                           Providing your age ensures you get the right Duolingo
                           experience. For more details, please visit our{" "}
                           <Link
@@ -185,7 +185,7 @@ export const LoginScreen = ({
                 type="password"
               />
               {loginScreenState === "LOGIN" && (
-                <div className="absolute right-0 top-0 bottom-0 flex items-center justify-center pr-5">
+                <div className="absolute bottom-0 right-0 top-0 flex items-center justify-center pr-5">
                   <Link
                     className="font-bold uppercase text-gray-400 hover:brightness-75"
                     href="/forgot-password"

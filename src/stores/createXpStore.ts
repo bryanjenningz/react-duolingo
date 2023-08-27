@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
-import type { BoundStateCreator } from "../hooks/useBoundStore";
-import type { DateString } from "../utils/dateString";
-import { toDateString } from "../utils/dateString";
-import { range, sum } from "../utils/array-utils";
+import type { BoundStateCreator } from "~/hooks/useBoundStore";
+import type { DateString } from "~/utils/dateString";
+import { toDateString } from "~/utils/dateString";
+import { range, sum } from "~/utils/array-utils";
 
 const addXpToday = (xpByDate: XpByDate, xp: number): XpByDate => {
   return addXp(xpByDate, xp, dayjs());

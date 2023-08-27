@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { useBoundStore } from "~/hooks/useBoundStore";
 import { ChevronLeftSvg, ChevronRightSvg } from "./Svgs";
-import { range } from "../utils/array-utils";
+import { range } from "~/utils/array-utils";
 
 const getCalendarDays = (now: dayjs.Dayjs): (number | null)[][] => {
   const startOfMonth = now.startOf("month");

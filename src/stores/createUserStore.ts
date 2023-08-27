@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import type { BoundStateCreator } from "../hooks/useBoundStore";
+import type { BoundStateCreator } from "~/hooks/useBoundStore";
 
 export type UserSlice = {
   name: string;

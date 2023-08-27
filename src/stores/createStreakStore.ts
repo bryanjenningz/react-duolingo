@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
-import type { BoundStateCreator } from "../hooks/useBoundStore";
-import type { DateString } from "../utils/dateString";
-import { toDateString } from "../utils/dateString";
+import type { BoundStateCreator } from "~/hooks/useBoundStore";
+import type { DateString } from "~/utils/dateString";
+import { toDateString } from "~/utils/dateString";
 
 type ActiveDays = Set<DateString>;
 
