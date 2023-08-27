@@ -13,11 +13,11 @@ import {
   TreasureProgressSvg,
 } from "./Svgs";
 import { Calendar } from "./Calendar";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { useBoundStore } from "~/hooks/useBoundStore";
 import { Flag } from "./Flag";
 import type { LoginScreenState } from "./LoginScreen";
 import { LoginScreen } from "./LoginScreen";
-import { useLeaderboardRank } from "../hooks/useLeaderboard";
+import { useLeaderboardRank } from "~/hooks/useLeaderboard";
 
 export const RightBar = () => {
   const loggedIn = useBoundStore((x) => x.loggedIn);
@@ -58,15 +58,15 @@ export const RightBar = () => {
                 display: languagesShown ? "block" : "none",
               }}
             >
-              <h2 className="py-3 px-5 font-bold uppercase text-gray-400">
+              <h2 className="px-5 py-3 font-bold uppercase text-gray-400">
                 My courses
               </h2>
-              <button className="flex w-full items-center gap-3 border-t-2 border-gray-300 bg-blue-100 py-3 px-5 text-left font-bold">
+              <button className="flex w-full items-center gap-3 border-t-2 border-gray-300 bg-blue-100 px-5 py-3 text-left font-bold">
                 <Flag language={language} width={45} />
                 <span className="text-blue-500">{language.name}</span>
               </button>
               <Link
-                className="flex w-full items-center gap-3 rounded-b-2xl border-t-2 border-gray-300 py-3 px-5 text-left font-bold hover:bg-gray-100"
+                className="flex w-full items-center gap-3 rounded-b-2xl border-t-2 border-gray-300 px-5 py-3 text-left font-bold hover:bg-gray-100"
                 href="/register"
               >
                 <span className="flex items-center justify-center rounded-lg border-2 border-gray-400 px-2 text-lg font-bold text-gray-400">
@@ -238,9 +238,9 @@ const DailyQuestsSection = () => {
                 ].join(" ")}
                 style={{ width: `${Math.min(1, xpToday / goalXp) * 100}%` }}
               >
-                <div className="absolute top-1 left-2 right-0 h-2 rounded-l-full bg-yellow-300"></div>
+                <div className="absolute left-2 right-0 top-1 h-2 rounded-l-full bg-yellow-300"></div>
               </div>
-              <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-sm text-gray-400">
+              <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-sm text-gray-400">
                 {xpToday} / {goalXp}
               </div>
             </div>
@@ -605,7 +605,7 @@ const XpProgressSection = () => {
                   className="absolute left-0 top-0 h-4 rounded-full bg-yellow-400"
                   style={{ width: `${Math.min(1, xpToday / goalXp) * 100}%` }}
                 >
-                  <div className="absolute left-2 top-1 right-2 h-[6px] rounded-full bg-yellow-300"></div>
+                  <div className="absolute left-2 right-2 top-1 h-[6px] rounded-full bg-yellow-300"></div>
                 </div>
               )}
             </div>

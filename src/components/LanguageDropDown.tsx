@@ -1,6 +1,6 @@
 import { ChevronDownSvg } from "./Svgs";
 import { useState } from "react";
-import languages from "../utils/languages";
+import languages from "~/utils/languages";
 import Link from "next/link";
 import { Flag } from "./Flag";
 
@@ -24,7 +24,7 @@ export const LanguageDropDown = () => {
       <span className="text-md uppercase">Site language: English</span>{" "}
       <ChevronDownSvg />
       {languagesShown && (
-        <ul className="absolute top-full right-0 grid w-[500px] grid-cols-2 rounded-2xl border-2 border-gray-200 bg-white p-6 font-light text-gray-600">
+        <ul className="absolute right-0 top-full grid w-[500px] grid-cols-2 rounded-2xl border-2 border-gray-200 bg-white p-6 font-light text-gray-600">
           {languages.map((language) => {
             return (
               <li key={language.code}>

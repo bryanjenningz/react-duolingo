@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import React, { useEffect } from "react";
-import { LeftBar } from "../components/LeftBar";
-import { BottomBar } from "../components/BottomBar";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { LeftBar } from "~/components/LeftBar";
+import { BottomBar } from "~/components/BottomBar";
+import { useBoundStore } from "~/hooks/useBoundStore";
 import Link from "next/link";
 import {
   BronzeLeagueSvg,
@@ -13,10 +13,10 @@ import {
   LockedLeagueSvg,
   SecondPlaceSvg,
   ThirdPlaceSvg,
-} from "../components/Svgs";
+} from "~/components/Svgs";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import { useLeaderboardUsers } from "../hooks/useLeaderboard";
+import { useLeaderboardUsers } from "~/hooks/useLeaderboard";
 import Image from "next/image";
 
 const LeaderboardExplanationSection = () => {
@@ -82,7 +82,7 @@ const LeaderboardProfile = ({
   return (
     <div
       className={[
-        "flex items-center gap-5 rounded-2xl py-2 px-5 hover:bg-gray-100 md:mx-0",
+        "flex items-center gap-5 rounded-2xl px-5 py-2 hover:bg-gray-100 md:mx-0",
         isCurrentUser ? "bg-gray-200" : "",
       ].join(" ")}
     >

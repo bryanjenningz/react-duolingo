@@ -25,16 +25,16 @@ import {
   ActiveTrophySvg,
   ActiveDumbbellSvg,
   PracticeExerciseSvg,
-} from "../components/Svgs";
-import { TopBar } from "../components/TopBar";
-import { BottomBar } from "../components/BottomBar";
-import { RightBar } from "../components/RightBar";
-import { LeftBar } from "../components/LeftBar";
+} from "~/components/Svgs";
+import { TopBar } from "~/components/TopBar";
+import { BottomBar } from "~/components/BottomBar";
+import { RightBar } from "~/components/RightBar";
+import { LeftBar } from "~/components/LeftBar";
 import { useRouter } from "next/router";
-import { LoginScreen, useLoginScreen } from "../components/LoginScreen";
-import { useBoundStore } from "../hooks/useBoundStore";
-import type { Tile, TileType, Unit } from "../utils/units";
-import { units } from "../utils/units";
+import { LoginScreen, useLoginScreen } from "~/components/LoginScreen";
+import { useBoundStore } from "~/hooks/useBoundStore";
+import type { Tile, TileType, Unit } from "~/utils/units";
+import { units } from "~/utils/units";
 
 type TileStatus = "LOCKED" | "ACTIVE" | "COMPLETE";
 
@@ -253,11 +253,11 @@ const TileTooltip = ({
       >
         <div
           className={[
-            "absolute top-[-8px] left-[140px] h-4 w-4 rotate-45",
+            "absolute left-[140px] top-[-8px] h-4 w-4 rotate-45",
             status === "ACTIVE"
               ? activeBackgroundColor
               : status === "LOCKED"
-              ? "border-t-2 border-l-2 border-gray-200 bg-gray-100"
+              ? "border-l-2 border-t-2 border-gray-200 bg-gray-100"
               : "bg-yellow-400",
           ].join(" ")}
           style={{
@@ -333,7 +333,7 @@ const UnitSection = ({ unit }: { unit: Unit }): JSX.Element => {
         backgroundColor={unit.backgroundColor}
         borderColor={unit.borderColor}
       />
-      <div className="relative mt-[67px] mb-8 flex max-w-2xl flex-col items-center gap-4">
+      <div className="relative mb-8 mt-[67px] flex max-w-2xl flex-col items-center gap-4">
         {unit.tiles.map((tile, i): JSX.Element => {
           const status = tileStatus(tile, lessonsCompleted);
           return (
@@ -349,7 +349,7 @@ const UnitSection = ({ unit }: { unit: Unit }): JSX.Element => {
                       return (
                         <div className="relative">
                           <TileIcon tileType={tile.type} status={status} />
-                          <div className="absolute top-6 left-0 right-0 flex justify-center text-lg font-bold text-yellow-700">
+                          <div className="absolute left-0 right-0 top-6 flex justify-center text-lg font-bold text-yellow-700">
                             {unit.unitNumber}
                           </div>
                         </div>
@@ -590,7 +590,7 @@ const HoverLabel = ({
 
   return (
     <div
-      className={`absolute z-10 w-max animate-bounce rounded-lg border-2 border-gray-200 bg-white py-2 px-3 font-bold uppercase ${textColor}`}
+      className={`absolute z-10 w-max animate-bounce rounded-lg border-2 border-gray-200 bg-white px-3 py-2 font-bold uppercase ${textColor}`}
       style={{
         top: "-25%",
         left: `calc(50% - ${width / 2}px)`,

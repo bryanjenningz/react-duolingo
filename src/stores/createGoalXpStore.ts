@@ -1,4 +1,4 @@
-import type { BoundStateCreator } from "../hooks/useBoundStore";
+import type { BoundStateCreator } from "~/hooks/useBoundStore";
 
 export type GoalXp = 1 | 10 | 20 | 30 | 50;
 

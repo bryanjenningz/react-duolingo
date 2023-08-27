@@ -1,5 +1,5 @@
-import { units } from "../utils/units";
-import type { BoundStateCreator } from "../hooks/useBoundStore";
+import { units } from "~/utils/units";
+import type { BoundStateCreator } from "~/hooks/useBoundStore";
 
 export type LessonSlice = {
   lessonsCompleted: number;

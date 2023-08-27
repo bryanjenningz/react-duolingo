@@ -2,10 +2,10 @@ import type { NextPage } from "next";
 import type { ComponentProps } from "react";
 import React from "react";
 
-import { BottomBar } from "../components/BottomBar";
-import { LeftBar } from "../components/LeftBar";
-import { RightBar } from "../components/RightBar";
-import { TopBar } from "../components/TopBar";
+import { BottomBar } from "~/components/BottomBar";
+import { LeftBar } from "~/components/LeftBar";
+import { RightBar } from "~/components/RightBar";
+import { TopBar } from "~/components/TopBar";
 
 const StreakFreezeSvg = (props: ComponentProps<"svg">) => {
   return (
@@ -355,11 +355,11 @@ const Shop: NextPage = () => {
                   Streak Freeze allows your streak to remain in place for one
                   full day of inactivity.
                 </p>
-                <div className="w-fit rounded-full bg-gray-200 py-1 px-3 text-sm font-bold uppercase text-gray-400">
+                <div className="w-fit rounded-full bg-gray-200 px-3 py-1 text-sm font-bold uppercase text-gray-400">
                   {streakFreezes} / 2 equipped
                 </div>
                 <button
-                  className="flex w-fit items-center gap-1 rounded-2xl border-2 border-gray-300 bg-white py-2 px-4 text-sm font-bold uppercase text-gray-300"
+                  className="flex w-fit items-center gap-1 rounded-2xl border-2 border-gray-300 bg-white px-4 py-2 text-sm font-bold uppercase text-gray-300"
                   disabled
                 >
                   Get one for: <EmptyGemSvg /> 10
@@ -375,7 +375,7 @@ const Shop: NextPage = () => {
                   seven day streak.
                 </p>
                 <button
-                  className="flex w-fit items-center gap-1 rounded-2xl border-2 border-gray-300 bg-white py-2 px-4 text-sm font-bold uppercase text-gray-300"
+                  className="flex w-fit items-center gap-1 rounded-2xl border-2 border-gray-300 bg-white px-4 py-2 text-sm font-bold uppercase text-gray-300"
                   disabled
                 >
                   Get for: <EmptyGemSvg /> 5
@@ -392,7 +392,7 @@ const Shop: NextPage = () => {
                 <p className="text-sm text-gray-500">
                   {`Celebrate Duolingo's 10 year anniversary with a new exclusive Duo plushie!`}
                 </p>
-                <button className="flex w-fit items-center gap-1 rounded-2xl border-2 border-b-4 border-gray-300 bg-white py-3 px-4 text-sm font-bold uppercase text-red-500">
+                <button className="flex w-fit items-center gap-1 rounded-2xl border-2 border-b-4 border-gray-300 bg-white px-4 py-3 text-sm font-bold uppercase text-red-500">
                   $29.99
                 </button>
               </section>

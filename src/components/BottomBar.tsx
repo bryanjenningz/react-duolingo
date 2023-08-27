@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useBoundStore } from "../hooks/useBoundStore";
+import { useBoundStore } from "~/hooks/useBoundStore";
 
 type BottomBarItem = {
   name: Tab;
@@ -174,8 +174,8 @@ export const BottomBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
                 href={item.href}
                 className={
                   item.name === selectedTab
-                    ? "rounded-xl border-2 border-[#84d8ff] bg-[#ddf4ff] py-1 px-2"
-                    : "py-1 px-2"
+                    ? "rounded-xl border-2 border-[#84d8ff] bg-[#ddf4ff] px-2 py-1"
+                    : "px-2 py-1"
                 }
               >
                 {item.icon}

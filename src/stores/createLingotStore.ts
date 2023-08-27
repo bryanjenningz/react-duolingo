@@ -1,4 +1,4 @@
-import type { BoundStateCreator } from "../hooks/useBoundStore";
+import type { BoundStateCreator } from "~/hooks/useBoundStore";
 
 export type LingotSlice = {
   lingots: number;
