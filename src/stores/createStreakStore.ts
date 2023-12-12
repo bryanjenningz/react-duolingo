@@ -32,7 +32,7 @@ export type StreakSlice = {
 
 export const createStreakSlice: BoundStateCreator<StreakSlice> = (
   set,
-  get
+  get,
 ) => ({
   activeDays: new Set(),
   streak: 0,

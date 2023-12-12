@@ -19,8 +19,8 @@ const getCalendarDays = (now: dayjs.Dayjs): (number | null)[][] => {
   ) {
     calendarDays.push(
       range(weekStartDate, weekStartDate + 7).map((date) =>
-        date <= now.daysInMonth() ? date : null
-      )
+        date <= now.daysInMonth() ? date : null,
+      ),
     );
   }
   return calendarDays;
@@ -86,8 +86,8 @@ export const Calendar = ({
                       isActiveDate
                         ? "bg-orange-400 text-white"
                         : isCurrentDate
-                        ? "bg-gray-300 text-gray-600"
-                        : "",
+                          ? "bg-gray-300 text-gray-600"
+                          : "",
                     ].join(" ")}
                   >
                     {date}

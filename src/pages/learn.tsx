@@ -217,7 +217,7 @@ const TileTooltip = ({
     const containsTileTooltip = (event: MouseEvent) => {
       if (selectedTile !== index) return;
       const clickIsInsideTooltip = tileTooltipRef.current?.contains(
-        event.target as Node
+        event.target as Node,
       );
       if (clickIsInsideTooltip) return;
       closeTooltip();
@@ -245,8 +245,8 @@ const TileTooltip = ({
           status === "ACTIVE"
             ? activeBackgroundColor
             : status === "LOCKED"
-            ? "border-2 border-gray-200 bg-gray-100"
-            : "bg-yellow-400",
+              ? "border-2 border-gray-200 bg-gray-100"
+              : "bg-yellow-400",
           index === selectedTile ? "top-4 scale-100" : "-top-14 scale-0",
         ].join(" ")}
         style={{ left: "calc(50% - 150px)" }}
@@ -257,8 +257,8 @@ const TileTooltip = ({
             status === "ACTIVE"
               ? activeBackgroundColor
               : status === "LOCKED"
-              ? "border-l-2 border-t-2 border-gray-200 bg-gray-100"
-              : "bg-yellow-400",
+                ? "border-l-2 border-t-2 border-gray-200 bg-gray-100"
+                : "bg-yellow-400",
           ].join(" ")}
           style={{
             left: getTileTooltipLeftOffset({ index, unitNumber, tilesLength }),
@@ -270,8 +270,8 @@ const TileTooltip = ({
             status === "ACTIVE"
               ? "text-white"
               : status === "LOCKED"
-              ? "text-gray-400"
-              : "text-yellow-600",
+                ? "text-gray-400"
+                : "text-yellow-600",
           ].join(" ")}
         >
           {description}
@@ -321,7 +321,7 @@ const UnitSection = ({ unit }: { unit: Unit }): JSX.Element => {
 
   const lessonsCompleted = useBoundStore((x) => x.lessonsCompleted);
   const increaseLessonsCompleted = useBoundStore(
-    (x) => x.increaseLessonsCompleted
+    (x) => x.increaseLessonsCompleted,
   );
   const increaseLingots = useBoundStore((x) => x.increaseLingots);
 
@@ -393,7 +393,7 @@ const UnitSection = ({ unit }: { unit: Unit }): JSX.Element => {
                               status === "LOCKED"
                             ) {
                               void router.push(
-                                `/lesson?fast-forward=${unit.unitNumber}`
+                                `/lesson?fast-forward=${unit.unitNumber}`,
                               );
                               return;
                             }
@@ -468,7 +468,7 @@ const UnitSection = ({ unit }: { unit: Unit }): JSX.Element => {
 };
 
 const getTopBarColors = (
-  scrollY: number
+  scrollY: number,
 ): {
   backgroundColor: `bg-${string}`;
   borderColor: `border-${string}`;
@@ -621,7 +621,7 @@ const UnitHeader = ({
   return (
     <article
       className={["max-w-2xl text-white sm:rounded-xl", backgroundColor].join(
-        " "
+        " ",
       )}
     >
       <header className="flex items-center justify-between gap-4 p-4">

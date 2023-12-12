@@ -10,7 +10,7 @@ export type SoundSettingsSlice = {
 };
 
 export const createSoundSettingsSlice: BoundStateCreator<SoundSettingsSlice> = (
-  set
+  set,
 ) => ({
   soundEffects: true,
   speakingExercises: true,

@@ -669,7 +669,7 @@ const LessonComplete = ({
   const addToday = useBoundStore((x) => x.addToday);
   const increaseLingots = useBoundStore((x) => x.increaseLingots);
   const increaseLessonsCompleted = useBoundStore(
-    (x) => x.increaseLessonsCompleted
+    (x) => x.increaseLessonsCompleted,
   );
   return (
     <div className="flex min-h-screen flex-col gap-5 px-4 py-5 sm:px-0 sm:py-0">
@@ -696,7 +696,7 @@ const LessonComplete = ({
               {Math.round(
                 (correctAnswerCount /
                   (correctAnswerCount + incorrectAnswerCount)) *
-                  100
+                  100,
               )}
               %
             </div>
@@ -796,7 +796,7 @@ const ReviewLesson = ({
                   setSelectedQuestionResult((selectedQuestionResult) =>
                     selectedQuestionResult === questionResult
                       ? null
-                      : questionResult
+                      : questionResult,
                   )
                 }
               >
